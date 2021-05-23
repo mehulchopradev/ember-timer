@@ -24,13 +24,8 @@ export default class TimerComponent extends Component {
   }
 
   @computed('duration')
-  get days () {
-    return Math.floor(this.duration.as('days'))
-  }
-
-  @computed('duration')
   get hours () {
-    return Math.floor(this.duration.as('hours'))%24
+    return Math.floor(this.duration.as('hours'));
   }
 
   @computed('duration')
