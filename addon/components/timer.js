@@ -25,17 +25,17 @@ export default class TimerComponent extends Component {
 
   @computed('duration')
   get hours () {
-    return Math.floor(this.duration.as('hours'));
+    return this._displayableResult(Math.floor(this.duration.as('hours')));
   }
 
   @computed('duration')
   get minutes () {
-    return Math.floor(this.duration.as('minutes'))%60
+    return this._displayableResult(Math.floor(this.duration.as('minutes'))%60);
   }
 
   @computed('duration')
   get seconds () {
-    return Math.floor(this.duration.as('seconds'))%60
+    return this._displayableResult(Math.floor(this.duration.as('seconds'))%60);
   }
 
   constructor () {
@@ -57,8 +57,14 @@ export default class TimerComponent extends Component {
     later( () => {
       this.tick()
     }, 1000)
+  }
 
-    
+  _displayableResult(result) {
+    if (result < 10) {
+      return `0${result}`;
+    }
+
+    return `${result}`;
   }
 }
 
